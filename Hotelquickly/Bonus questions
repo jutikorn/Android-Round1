@@ -1,0 +1,28 @@
+Bonus questions.
+
+
+1. If URL of webview changes, will application load content from new URL?
+
+- Yes, I will reload a Content from new URL.
+
+
+2. We would like to have a link in webview, that will open some native screen in application. Is it possible? How would you do it?
+
+- You can set WebViewClient to WebView, after that override the 'shouldOverrideUrlLoading' method, then you can set some action to open a new Screen in this method by tag it with the url. 
+
+For example:
+
+@Override
+public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+//In this case, Not only the Activity can be opened
+//but you can also show some dialog in here. 
+        if (url.equals(TAG_CUSTOMER_ACTIVITY)) {
+            Intent intent = new Intent(context, CustomerActivity);
+            startActivity(intent);
+            return true;
+        } 
+        else
+            view.loadUrl(url);
+            return false; 
+
